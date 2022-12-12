@@ -98,5 +98,5 @@ for theme_src_dir in "$SRC_DIR"/*; do
 
 	cp -f "$theme_src_dir/index.theme" "$theme_out_dir"/
 	cp -f cursor.theme "$theme_out_dir"/
-	sed -i 's/oreo_base_cursors/'$theme_name'/g' dist/$theme_name/cursor.theme
+	sed -i 's/Oreo-Base-Cursors/'$theme_name'/g' dist/$theme_name/cursor.theme
 done

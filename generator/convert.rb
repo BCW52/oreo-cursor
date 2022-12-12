@@ -19,7 +19,7 @@ abort "Error! Atleast Ruby 2.4 is needed! You are running #{RUBY_VERSION} (#{RUB
 
 ### User definable ###
 ## Location of the base cursors
-BASE = File.join(__dir__, 'oreo_base_cursors')
+BASE = File.join(__dir__, 'Oreo-Base-Cursors')
 
 ## Output directory
 OUT_DIR = File.join(File.expand_path('..', __dir__), 'src')
@@ -28,7 +28,7 @@ OUT_DIR = File.join(File.expand_path('..', __dir__), 'src')
 INDEX_THEME = proc do |x|
 	<<~EOF
 		[Icon Theme]
-		Name=Oreo #{x.split(?_).map(&:capitalize).join(?\s)} Cursors
+		Name=Oreo-#{x.split(?_).map(&:capitalize).join(?\s)}-Cursors
 		Comment=design by varlesh | colour by #{Process.argv0}
 	EOF
 end
@@ -230,7 +230,7 @@ end
 begin
 	colours.each do |x, y|
 		# Make the directory name is the colour name mentioned in the config file
-		dirname = File.join(OUT_DIR, "oreo_#{x}_cursors")
+		dirname = File.join(OUT_DIR, "Oreo-#{x}-Cursors")
 
 		# Make the directory mentioned in the config file
 		# We will store svg files here, mapped to colours
