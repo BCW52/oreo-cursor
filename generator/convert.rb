@@ -28,7 +28,7 @@ OUT_DIR = File.join(File.expand_path('..', __dir__), 'src')
 INDEX_THEME = proc do |x|
 	<<~EOF
 		[Icon Theme]
-		Name=Oreo-#{x.split(?_).map(&:capitalize).join(?\s)}-Cursors
+		Name=Oreo #{x.split(?_).map(&:capitalize).join(?\s)} Cursors
 		Comment=design by varlesh | colour by #{Process.argv0}
 	EOF
 end
