@@ -31,15 +31,17 @@ convert_to_png() {
 				continue
 			fi
 
-			if [ "${INKSCAPE_VERSION%%.*}" -eq 0 ]; then
-				printf 'inkscape -z -e "%s" -w %s -h %s "%s"\0' \
-					"$bitmap_file" "$size" "$size" "$file"
-			else
-				printf 'inkscape -o "%s" -w %s -h %s "%s"\0' \
-					"$bitmap_file" "$size" "$size" "$file"
-			fi
+if [ "${INKSCAPE_VERSION%%.*}" -eq 0 ]; then
+    printf 'inkscape -z --batch-process -o "%s" -w %s -h %s "%s"\0' \
+        "$bitmap_file" "$size" "$size" "$file"
+else
+    printf 'inkscape --batch-process -o "%s" -w %s -h %s "%s"\0' \
+        "$bitmap_file" "$size" "$size" "$file"
+fi
+
 		done
-	done | xargs -r -0 -n 1 -P "$(nproc)" sh -c
+done | xargs -r -0 -n 1 -P "$(nproc)" -t sh -c
+
 }
 
 convert_to_x11cursor() {
@@ -98,5 +100,5 @@ for theme_src_dir in "$SRC_DIR"/*; do
 
 	cp -f "$theme_src_dir/index.theme" "$theme_out_dir"/
 	cp -f cursor.theme "$theme_out_dir"/
-	sed -i 's/oreo_base_cursors/'$theme_name'/g' dist/$theme_name/cursor.theme
+	sed -i 's/Oreo-Base-Cursors/'$theme_name'/g' dist/$theme_name/cursor.theme
 done
